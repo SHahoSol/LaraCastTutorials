@@ -1,43 +1,35 @@
-Vue.component('task-list', {
+Vue.component('message', {
+
+  props: ['title', 'body'],
+
+  data() {
+    return {
+      isVisible: true
+    };
+
+  }
 
 template: `
-  <div>
 
-    <task v-for task in tasks>{{task.task}}</task>
+<article class="message" v-show="isVisible">
+<div class="message-header">
 
-  </div>
 
-  `,
+  {{title}}
 
-data() {
+  <button type="button" @click="isVisible = false">x</button>
 
-return {
-  tasks: [
 
-    { taks: 'got to store', complete: true},
+  <button class="delete" aria-label="delete"></button>
+</div>
+<div class="message-body">
+  {{body}}.
+</div>
+</article>
 
-    { taks: 'got to store', complete: false},
-
-    { taks: 'got to store', complete: true},
-
-    { taks: 'got to store', complete: false}
-
-    ]
-  };
-
-}
+`
 
 });
-
-Vue.component('task', {
-
-  template: '<li><slot></slot></li>'
-
-});
-
-
-
-
 
 new Vue({
   el: '#root'
